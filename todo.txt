@@ -1,9 +1,17 @@
+DONE
 #1 - Create some basic drawings / ideas for the features + design
-#2 - Investigate how  factories / constructor/classes are use to generate projects/to-do items
 #3 - Investigate how to separate application logic in modules (multiple js files?)
+#2 - Investigate how  factories / constructor/classes are use to generate projects/to-do items
+#4.1 - View all projects
+
+TODO
+
+
 
 #4 - Create UI - must contain
-#4.1 - View all projects
-#4.2 - View all todos ion each projects
+
+#4.2 - View all todos on each projects
 #4.3 - View todo details
 #4.4 - Delete a todo
+
+#5 create methods in todo + projects to CRUD
