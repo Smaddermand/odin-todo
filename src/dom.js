@@ -7,26 +7,30 @@ window.myTodoApp = new TodoApp(); //window. for debugging...
 
 //Create an initial default project as to not have an empty UI..
 const myProject = myTodoApp.addProject("Default Project");
+const myProject1 = myTodoApp.addProject("Default Project");
+const myProject2 = myTodoApp.addProject("Default Project");
 
 
 myTodoApp.listProjects(); //test purpose - check if projects are created
 
-/*show all projects under "Projects"
-/this means the following must be created
+
+/*
+Okay, next step is to create the possibilit to add projects..
 
 Done:
-    1. HTML container type to add the projects? Or is that created with JS? Check myLibrary..
-        Yes, I need to create a div class "projects" to fill with projects
-    2. CSS in order to show the project cards
-        "cards" for the projects
-        Setup some flex column? (looks okay.. for now?)
+    1. Create button
 
-In progress
-    3. A displayProjects() function running some for each method..
-    4. 
-
+TODO:
+    2. HTML - Need a dialog for the new book (this is not a pretty solution, but it works.. for now)
+    3. HTML - with subsequint form
+    4. Check if styling can work (not pretty, but functional)
+    5. JS - declare/initialize button + dialog/modal + form
+    6. JS - create the function that adds the project to the list
+    7. JS - and resets the display
+    
 
 */
+
 
 
 function displayProjects(){
