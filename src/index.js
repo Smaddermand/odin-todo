@@ -1,6 +1,6 @@
 // index.js
 
-import './dom.js';
+import './dom';
 
 import './style.css';
 

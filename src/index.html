@@ -17,13 +17,25 @@
         <div class="container">
             <section class="projects">
                 <h2>Projects</h2>
-                <button class="newproject-btn">+</button>
+                    <!-- <dialog id="new-project"> -->
+                        <div class="form-wrapper">
+                            <form class="form" id="newproject-form">
+                                <div class="form-column">
+                                    <label for="name"></label>
+                                    <input type="text" name="name" id="name">
+                                </div>
+                                <button type="submit" class="newproject-submit" id="newproject-submit">+</button>
+                            </form>
+                        </div>
+                    <!-- </dialog> -->
+
                 <div class="projectlist">This will fill with projects</div> 
 
             </section>
             
             <section class="todos">
                 <h2>Todos</h2>
+                 <div class="todolist">This will fill with todos</div>
             </section>
         </div>
     </main>

@@ -3,53 +3,106 @@
 import { TodoApp } from './todo';
 
 // Instantiate your TodoApp - if I should want to manipulate the todo app here..
-window.myTodoApp = new TodoApp(); //window. for debugging...
+const myTodoApp = new TodoApp();
+window.myTodoApp = myTodoApp; // window. for debugging...
 
-//Create an initial default project as to not have an empty UI..
-const myProject = myTodoApp.addProject("Default Project");
-const myProject1 = myTodoApp.addProject("Default Project");
-const myProject2 = myTodoApp.addProject("Default Project");
-
-
-myTodoApp.listProjects(); //test purpose - check if projects are created
-
-
-/*
-Okay, next step is to create the possibilit to add projects..
-
-Done:
-    1. Create button
-
-TODO:
-    2. HTML - Need a dialog for the new book (this is not a pretty solution, but it works.. for now)
-    3. HTML - with subsequint form
-    4. Check if styling can work (not pretty, but functional)
-    5. JS - declare/initialize button + dialog/modal + form
-    6. JS - create the function that adds the project to the list
-    7. JS - and resets the display
-    
-
-*/
+// Create an initial default project as to not have an empty UI..
+myTodoApp.addProject("Default Project");
 
 
 
+myTodoApp.listProjects(); // test purpose - check if projects are created
+
+
+// function to display the projects
 function displayProjects(){
-    let projectlistDiv = document.querySelector(".projectlist");
+    const projectlistDiv = document.querySelector(".projectlist");
+    projectlistDiv.innerHTML = '';
 
+
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < myTodoApp.projects.length; i++){
-        let newProjectDiv = document.createElement("div");
-        let newProjectName = document.createTextNode(myTodoApp.projects[i].name);
+        const newProjectDiv = document.createElement("div");
+        const newProjectName = document.createTextNode(myTodoApp.projects[i].name);
         newProjectDiv.appendChild(newProjectName); 
         newProjectDiv.className = "project";
         projectlistDiv.appendChild(newProjectDiv);
 
-        console.log("hello");
+        console.log(`Project displayed: ${  myTodoApp.projects[i].name}`);
     }
 }
 
-displayProjects();
+
+displayProjects(); 
 
 
+// Button/event listener to add projects
+const newProjectBtn = document.getElementById("newproject-submit");
+newProjectBtn.addEventListener("click", (event) =>{
+    event.preventDefault();
+    const nameInput = document.getElementById("name");
+    const name = nameInput.value
+    if(name.trim() !== ""){
+        myTodoApp.addProject(name);
+        displayProjects();
+    }
+    nameInput.value = "";
+})
+
+
+// test for todos - alright this works
+
+const defaultProject = myTodoApp.findProjectByName("Default Project");
+if(defaultProject){
+    defaultProject.addTodo("Do stuff");
+    defaultProject.listTodos();
+}
+
+
+// // function to display the todos
+// function displayTodos(){
+//     const todolistDiv = document.querySelector(".todolist");
+//     todolistDiv.innerHTML = '';
+
+
+//     // eslint-disable-next-line no-plusplus
+//     for (let i = 0; i < myTodoApp.todos.length; i++){
+//         const newTodoDiv = document.createElement("div");
+//         const newTodoName = document.createTextNode(myTodoApp.todos[i].description);
+//         newTodoDiv.appendChild(newTodoName); 
+//         newTodoDiv.className = "project";
+//         todolistDiv.appendChild(newTodoDiv);
+
+//         console.log(`Todo displayed: ${  myTodoApp.todos[i].description}`);
+//     }
+// }
+
+// displayTodos();
+
+function displayTodos(projectName) {
+    const project = myTodoApp.findProjectByName(projectName);
+    if (!project) {
+        console.log("Project not found.");
+        return;
+    }
+
+    const todolistDiv = document.querySelector(".todolist");
+    todolistDiv.innerHTML = ''; // Clear the current todos
+
+    // Iterate over the todos of the found project
+    project.todos.forEach(todo => {
+        const newTodoDiv = document.createElement("div");
+        const newTodoName = document.createTextNode(todo.description);
+        newTodoDiv.appendChild(newTodoName); 
+        newTodoDiv.className = "project";
+        todolistDiv.appendChild(newTodoDiv);
+
+        console.log(`Todo displayed: ${todo.description}`);
+    });
+}
+
+// Example usage: Display todos for the "Work" project
+displayTodos("Default Project");
 
 
 // ;

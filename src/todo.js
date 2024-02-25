@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable max-classes-per-file */
 // src/todo.js
 
 
@@ -22,6 +24,13 @@ class Project {
         const todo = new Todo(description);
         this.todos.push(todo);
     }
+
+    listTodos() {
+        console.log(`Todos for project: ${this.name}`);
+        this.todos.forEach((todo, index) => {
+            console.log(`${index + 1}: ${todo.description} - Completed: ${todo.completed}`);
+        });
+    }
 }
 
 export class TodoApp{
@@ -36,11 +45,19 @@ export class TodoApp{
 
     // After adding projects to myTodoApp
     listProjects(){
-    this.projects.forEach(project => console.log(project.name))}
-;
+    this.projects.forEach(project => console.log(project.name))};
+
+    findProjectByName(name){
+        return this.projects.find(project => project.name === name);
+    }
+
+
+    static Todo = Todo;
+
+    static Project = Project;
 }
 
 
-console.log("Hi, from todo.js");
+
+
    
-// }
