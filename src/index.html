@@ -35,7 +35,25 @@
             
             <section class="todos">
                 <h2>Todos</h2>
-                 <div class="todolist">This will fill with todos</div>
+                <button class="newtodo-btn" id="newtodo-btn">Add todo</button>
+                <dialog id="newtodo-dialog">
+                    <div class="todoform-wrapper">
+                        <form class="form" id="newbook-form">
+                            <div class="form-column">
+                                <label for="description">Description</label>
+                                <input type="text" name="description" id="description">
+
+                                <label for="completed">completed</label>
+                                <input type="checkbox" name="completed" id="completed">
+                            </div>
+                            <button value="cancel" formmethod="dialog">cancel</button>
+                            <button type="submit" class="newtodo-submit">Add to project</button>
+                        </form>
+                    </div>
+                </dialog> 
+                
+                <div class="todolist">
+                 </div>
             </section>
         </div>
     </main>

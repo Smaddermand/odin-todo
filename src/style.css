@@ -57,6 +57,22 @@ footer {
 
 }
 
+.project:hover{
+    background-color: rgb(86, 126, 195);
+}
+
+.todo{
+    background-color:rgb(64, 173, 173);
+    height: 50px;
+    width: 200px;
+    margin: 20px;
+}
+
+.todo:hover{
+    background-color: rgb(86, 126, 195);
+}
+
+
 .todos{
     flex: 3;
     padding: 10px;
