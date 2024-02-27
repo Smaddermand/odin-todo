@@ -8,6 +8,7 @@ window.myTodoApp = myTodoApp; // window. for debugging...
 
 // Create an initial default project as to not have an empty UI..
 myTodoApp.addProject("Default Project");
+let currentProject = "Default Project";
 
 
 
@@ -32,7 +33,10 @@ function displayProjects(){
         newProjectDiv.addEventListener('mouseover', () => {});
         newProjectDiv.addEventListener("click", () => {
             console.log(`you clicked me: ${  myTodoApp.projects[i].name}`);
+            currentProject = myTodoApp.projects[i].name;
             displayTodos(myTodoApp.projects[i].name);
+            console.log("this is the active project");
+            console.log(currentProject);
         } )
 
         console.log(`Project displayed: ${  myTodoApp.projects[i].name}`);
@@ -99,74 +103,46 @@ function displayTodos(projectName) {
 // Example usage: Display todos for the "Work" project --> This should just run initially. 
 displayTodos("Default Project");
 
-// const showNewTodoForm = document.getElementById("newtodo-btn");
-// const newTodoDialog = document.getElementById("newtodo-dialog");
-// showNewTodoForm.addEventListener("click", () => {
-//     newTodoDialog.showModal();
-//     const newTodoForm = document.getElementById("newtodo-form");
-//     newTodoForm.addEventListener("submit", (event) => {
-//         event.preventDefault();
-//         const description = document.getElementById("description").value;
-//         const completed = document.getElementById("completed").checked;
-//         defaultProject.addTodo(description);
-//         displayTodos("Default Project");
-//         newTodoDialog.close();
-//     });
-// });
 
-document.addEventListener('DOMContentLoaded', () => {
+
+
+
+
+
     const showNewTodoForm = document.getElementById("newtodo-btn");
     const newTodoDialog = document.getElementById("newtodo-dialog");
-    
-    // Check if elements exist
-    if (showNewTodoForm && newTodoDialog) {
-        showNewTodoForm.addEventListener("click", () => {
-            newTodoDialog.showModal();
-        });
-    } else {
-        console.error("One or more elements (newtodo-btn, newtodo-dialog) were not found.");
-        return;
-    }
-    
-    // Attach submit event listener to the form only once, outside of the showModal call
-    // This ensures the listener is not attached multiple times
-    const newTodoForm = document.getElementById("newtodo-form");
-    if (newTodoForm) {
-        newTodoForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const description = document.getElementById("description").value;
-            const completed = document.getElementById("completed").checked;
-            
-            // Assuming defaultProject is correctly initialized and available in this scope
-            defaultProject.addTodo(description, completed); // Adjusted to use the completed variable
-            
-            newTodoDialog.close();
-            displayTodos("Default Project");
-        });
-    } else {
-        console.error("The newtodo-form was not found.");
-    }
-});
+    showNewTodoForm.addEventListener('click', () => {
+        newTodoDialog.showModal();
+    });
 
 
+    const newTodoForm = document.getElementById("newtodo-form")
+    newTodoForm.addEventListener('submit', (event) => {
+        event.preventDefault(); 
+        console.log('form submitted');
+
+        // add code
+
+        const description = document.getElementById("description").value;
+        // const completed = document.getElementById("completed").checked;
+
+        const findCurrentProject = myTodoApp.findProjectByName(currentProject);
+        findCurrentProject.addTodo(description);
+        displayTodos(currentProject);
+
+        newTodoDialog.close();
+    });
 
 
-/* Next step is to add todos
+/*
 
-DONE
-    1. HTML: Create a button "+" with the todos
-    2. HTML: Create a dialog + form with description plus boolean (completed, yes no)
-        3. remember create + cancel button
-    3. CSS: No need for styling at the moment
+The next (and final?) step is to delete todos..
 
-TODO
-    4. JS: Take from Library.. --> Works somewhat
-    5. Does not add todo.. How to "get" the active project.. Some state management?
-        6. The way to get it is to "click" it.. Maybe create a variable that contains the "selected" project.. And use that when adding and listing todos
-
-
-
-    99: Next step is to create an "click" eventlistener that opens the dialog/form to view the todos
+TODO:
+    1. Add a delete button - dynamic created when looping over and showing the todos
+    2. Add class + CSS for button ("delete text"
+    3. add event listener to the button
+    4. Code for deleting (splice?)
 
 
 
