@@ -61,7 +61,7 @@ newProjectBtn.addEventListener("click", (event) =>{
 })
 
 
-// Bekiw is just a test to get some default todos for visualization
+// Below is just a test to get some default todos for visualization
 
 const defaultProject = myTodoApp.findProjectByName("Default Project");
 if(defaultProject){
@@ -92,8 +92,21 @@ function displayTodos(projectName) {
         newTodoDiv.appendChild(newTodoName); 
         newTodoDiv.className = "todo";
         todolistDiv.appendChild(newTodoDiv);
-
+        
+        // mouse over for hover effect
         newTodoDiv.addEventListener('mouseover', () => {});
+
+        // add delete button 
+        const deleteButton = document.createElement("button");
+        const buttonText = document.createTextNode("-");
+        deleteButton.appendChild(buttonText);
+        newTodoDiv.appendChild(deleteButton);
+
+        deleteButton.addEventListener("click", () => {
+            todolistDiv.removeChild(newTodoDiv);
+            console.log(project);
+            project.removeTodoByDescription(todo.description);
+        })
 
 
         console.log(`Todo displayed: ${todo.description}`);

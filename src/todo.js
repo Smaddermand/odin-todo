@@ -25,6 +25,16 @@ class Project {
         this.todos.push(todo);
     }
 
+    removeTodoByDescription(description){
+        const index = this.todos.findIndex(todo => todo.description === description);
+        if(index !== 1) {
+            this.todos.splice(index, 1);
+            console.log(description);
+            console.log(" deleted");
+        }
+        
+    }
+
     listTodos() {
         console.log(`Todos for project: ${this.name}`);
         this.todos.forEach((todo, index) => {
